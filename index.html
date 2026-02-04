@@ -38,7 +38,7 @@
     <link rel="canonical" href="https://twoheartsapp.com/">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css?v=8">
+    <link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
 
@@ -56,6 +56,17 @@
             <div class="nav-right">
                 <a href="#" class="nav-cta" id="nav-download">Download</a>
             </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#features" class="mobile-menu-link">Features</a>
+            <a href="#faq" class="mobile-menu-link">FAQ</a>
+            <a href="mailto:hello@twoheartsapp.com" class="mobile-menu-link">Contact</a>
+            <a href="#" class="mobile-menu-cta" id="mobile-download">Download</a>
         </div>
     </nav>
 
@@ -63,8 +74,9 @@
     <section class="hero">
         <div class="container">
             <div class="hero-split">
+                <p class="hero-eyebrow hero-eyebrow-mobile">iPhone &amp; Apple Watch</p>
                 <div class="hero-text">
-                    <p class="hero-eyebrow">iPhone &amp; Apple Watch</p>
+                    <p class="hero-eyebrow hero-eyebrow-desktop">iPhone &amp; Apple Watch</p>
                     <h1 class="hero-headline">A check-in you can <span class="gradient-text">feel.</span></h1>
                     <p class="hero-description">Share heartbeats with friends and family. A tiny signal that keeps you close.</p>
 
@@ -85,8 +97,8 @@
                 </div>
 
                 <div class="hero-mockups">
-                    <img src="assets/mock1.png" alt="Two Hearts home screen showing friends' heartbeats" class="hero-mockup hero-mockup-1">
-                    <img src="assets/mock2.png" alt="Two Hearts profile and settings screen" class="hero-mockup hero-mockup-2">
+                    <img src="assets/mock1.png" alt="Two Hearts iPhone app showing friends' heartbeats" class="hero-mockup hero-mockup-1">
+                    <img src="assets/watch1.png" alt="Two Hearts on Apple Watch showing live heart rate" class="hero-mockup hero-mockup-2">
                 </div>
             </div>
         </div>
@@ -347,6 +359,24 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // --- Hamburger menu toggle ---
+        var hamburger = document.getElementById('hamburger');
+        var mobileMenu = document.getElementById('mobile-menu');
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('open');
+            });
+            // Close menu when a link is tapped
+            var menuLinks = mobileMenu.querySelectorAll('a');
+            for (var i = 0; i < menuLinks.length; i++) {
+                menuLinks[i].addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('open');
+                });
+            }
+        }
 
         // --- Smooth scroll for anchor links ---
         document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {

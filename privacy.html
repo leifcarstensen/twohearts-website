@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" href="assets/LogoSplash.png">
     <link rel="apple-touch-icon" href="assets/LogoSplash.png">
     <link rel="canonical" href="https://twoheartsapp.com/privacy.html">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
 
@@ -26,14 +26,49 @@
     <nav class="navbar scrolled">
         <div class="nav-content">
             <a href="/" class="logo">
-                <span class="logo-icon">
-                    <img src="assets/LogoSplash.png" alt="Two Hearts icon">
-                </span>
-                <span class="logo-text">Two Hearts</span>
+                <img src="assets/LogoDark.svg" alt="Two Hearts" class="logo-img">
             </a>
-            <a href="/" class="nav-cta">Home</a>
+            <div class="nav-center">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/terms.html" class="nav-link">Terms</a>
+                <a href="mailto:hello@twoheartsapp.com" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-right">
+                <a href="/" class="nav-cta">Download</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="/" class="mobile-menu-link">Home</a>
+            <a href="/terms.html" class="mobile-menu-link">Terms</a>
+            <a href="mailto:hello@twoheartsapp.com" class="mobile-menu-link">Contact</a>
+            <a href="/" class="mobile-menu-cta">Download</a>
         </div>
     </nav>
+
+    <script>
+    (function() {
+        var hamburger = document.getElementById('hamburger');
+        var mobileMenu = document.getElementById('mobile-menu');
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('open');
+            });
+            var menuLinks = mobileMenu.querySelectorAll('a');
+            for (var i = 0; i < menuLinks.length; i++) {
+                menuLinks[i].addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('open');
+                });
+            }
+        }
+    })();
+    </script>
 
     <!-- Privacy Policy Content -->
     <main class="legal-page">
